@@ -4,8 +4,6 @@
   <a href="https://trello.com">Trello</a>
   <div>
     <%= form_for(:session, :html => {role: "form", url:login_path }) do |f| %>
-    <%= f.text_field :name, placeholder: "Wpisz nazwę użytkownika", autofocus: true %>
-    <tr> Lub </tr>
     <%= f.email_field :email, placeholder: "Wpisz email" %>
     <%= f.password_field :password, placeholder: "Wpisz hasło", autocomplete: "off" %>
       <p>

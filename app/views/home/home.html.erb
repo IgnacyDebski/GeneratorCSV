@@ -1,11 +1,15 @@
 <div>
   <h1 align="center"> Witaj w CSV_Maker! <h1>
-  <a href="https://trello.com">Trello</a>
-  <p align="right"> <%= link_to "Zarejestruj się !", registration_path %> </p>
-  <p align="center"> <%= link_to "Zaloguj się !", login_path %> </p>
-  <div> <%= image_tag("Trello.png", style:"width: 50%; height: 100%") %><%= image_tag("csv.png", style:"width: 50%; height: 98%") %> </div>
-</div>
-
-<div>
-
+  <div style="display:flex">
+    <div style="width:50%;">
+      <%= link_to "https://trello.com", target: :blank do %>
+        <%= image_tag("Trello.png", style:"width: 100%") %>
+      <% end %>
+   </div>
+   <div style="width:50%">
+     <%= link_to "https://pl.wikipedia.org/wiki/CSV_(format_pliku)", target: :blank do %>
+     <%= image_tag("csv.png", style:"width: 100%") %>
+     <% end %>
+   </div>
+  </div>
 </div>
