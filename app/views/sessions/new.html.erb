@@ -1,0 +1,21 @@
+<div style="background-color: orange;">
+  <h1 align="center"> Witaj w CSV_Maker! <h1>
+  <h1 align="center"> Zaloguj się :)<h1>
+  <a href="https://trello.com">Trello</a>
+  <div>
+    <%= form_for(:session, :html => {role: "form", url:login_path }) do |f| %>
+    <%= f.text_field :name, placeholder: "Wpisz nazwę użytkownika", autofocus: true %>
+    <tr> Lub </tr>
+    <%= f.email_field :email, placeholder: "Wpisz email" %>
+    <%= f.password_field :password, placeholder: "Wpisz hasło", autocomplete: "off" %>
+      <p>
+        <%= f.submit("Zaloguj się!") %>
+      </p>
+      <p align="center">
+        <%= link_to "Home", root_path %>
+        <p align="right"> <%= link_to "Zarejestruj się !", registration_path %> </p>
+      </p>
+    <% end %>
+  </div>
+  <div> <%= image_tag("Trello.png", style:"width: 50%; height: 100%") %><%= image_tag("csv.png", style:"width: 50%; height: 98%") %> </div>
+</div>
