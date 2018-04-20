@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'home#home'
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
-  get 'registration', to: 'sessions#registration_form'
-  post 'registration', to: 'sessions#registration'
+  get 'registration', to: 'registration#new'
+  post 'registration', to: 'registration#create'
   delete 'logout', to: 'sessions#destroy'
 end

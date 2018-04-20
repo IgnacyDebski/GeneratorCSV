@@ -1,43 +1,31 @@
-class SessionsController < ActionController::Base
+class SessionsController < ApplicationController
 
   def new
-    @user = User.new(user_params)
-    if @user.save
-      flash[:success] = "Logowanie się powiodło, witaj! #{@user.name}"
-      redirect_to root_path
-    else
-      flash[:danger] = "Logowanie się niepowiodło, spróbuj jeszcze raz."
-      render "registration_form"
-    end
-  end
 
-  def registration_form
-
-  end
-
-  def registration
-    @user = User.new(user_params)
-    if @user.save
-      flash[:success] = "Rejestracja się powiodła #{@user.name}"
-      redirect_to root_path
-    else
-      flash[:danger] = "Rejestracja się niepowiodła #{@user.name}"
-      render "registration_form"
-    end
   end
 
   def create
-
+    user = User.find_by(email: params[:session][:email].downcase)
+    if user && user.authenticate(params[:session][:password])
+      session[:user_id] = user.id
+      flash[:success] = "Gratulacje, zalogowałeś się poprawnie"
+      redirect_to root_path
+    else
+      flash.now[:danger] = "Coś jest nie tak z twoimi danymi logowania"
+      render 'new'
+    end
   end
 
   def destroy
-
+    session[:user_id] = nil
+    flash[:success] = "Wylogowałeś się"
+    redirect_to root_path
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password)
+    params.require(:session).permit(:name, :email, :password)
   end
 
 end
