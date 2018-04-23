@@ -68,6 +68,10 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     crass (1.0.4)
+    dotenv (2.3.0)
+    dotenv-rails (2.3.0)
+      dotenv (= 2.3.0)
+      railties (>= 3.2, < 6.0)
     erubi (1.7.1)
     execjs (2.7.0)
     ffi (1.9.23)
@@ -99,6 +103,7 @@ GEM
     nio4r (2.3.0)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
+    oauth (0.5.4)
     public_suffix (3.0.2)
     puma (3.11.4)
     rack (2.0.4)
@@ -190,9 +195,11 @@ DEPENDENCIES
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
+  dotenv-rails
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
+  oauth
   puma (~> 3.7)
   rails (~> 5.1.6)
   sass-rails (>= 3.2)

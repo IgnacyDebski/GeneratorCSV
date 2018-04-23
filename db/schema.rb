@@ -10,15 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180420121232) do
+ActiveRecord::Schema.define(version: 20180423103653) do
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
     t.string "email"
-    t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "password_digest"
+    t.string "trello_id"
+    t.string "trello_username"
+    t.string "trello_access_token"
+    t.string "trello_secret_token"
   end
 
 end
