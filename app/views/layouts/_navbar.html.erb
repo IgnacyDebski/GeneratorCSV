@@ -21,8 +21,6 @@
           <li> <%= link_to 'Wyloguj się', logout_path, method: :delete %> </li>
           <li> <%= link_to 'Przejdź do generowania csv', csv_path %> </li>
         <% else %>
-          <li> <%= link_to 'Zaloguj się', login_path %> </li>
-          <li> <%= link_to 'Zarejestruj się', registration_path %> </li>
           <li> <%= link_to 'Zaloguj się przez Trello', trello_authorizes_path %> </li>
         <% end %>
         <li class="dropdown">
@@ -30,7 +28,7 @@
           <ul class="dropdown-menu">
             <li><%= link_to 'Home', root_path %></li>
             <li><a href="https://trello.com">Trello</li>
-            <li><%= link_to 'Zaloguj się przez trello', trello_authorizes_path %></li>
+            <li><%= link_to 'Zaloguj się ponownie trello', trello_authorizes_path %></li>
             <li role="separator" class="divider"></li>
           </ul>
         </li>
