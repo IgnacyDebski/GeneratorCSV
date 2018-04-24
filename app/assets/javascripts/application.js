@@ -11,7 +11,13 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require turbolinks
 //= require jquery
 //= require bootstrap-sprockets
+//= require bootstrap-datepicker
 //= require_tree .
+
+$(window).on("load", function(){
+  $(".button").on("click", function(){
+    alert("Wygenerowano CSV!");
+  });
+});
