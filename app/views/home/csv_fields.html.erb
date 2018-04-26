@@ -3,19 +3,26 @@
     <h1 align="center"> Dane do CSV <h1>
 
     <div align= "center" >
-      <%= form_tag(csv_path, method: :get) do %>
+      <%= form_tag(csv_path, remote: true, method: :get) do %>
         <p>Wybierz organizację</p>
         <%= select_tag "organization", options_for_select(@organizations.collect{ |elem| [elem["displayName"], elem["id"]] },
-                        params[:organization]), onChange: "this.form.submit()"%>
+                        params[:organization]), prompt: "Proszę wybrać", onChange: "this.form.submit()"%>
         <p>Wybierz tablicę</p>
-        <%= select_tag "board", options_for_select(@boards.collect{ |board| [board["name"], board["id"]] }, params[:board]), onChange: "this.form.submit()" %>
+        <%= select_tag "board", options_for_select(@boards.collect{ |board| [board["name"], board["id"]] }, params[:board]), prompt: "Proszę wybrać", onChange: "this.form.submit()" %>
         <p>Wybierz zakres dat (od ... do ...)</p>
         <%= text_field_tag 'from', params[:from] ? params[:from] : Date.today.strftime("%m/%d/%Y"), "data-provide":"datepicker", onChange: "this.form.submit()" %>
         <%= text_field_tag 'to', params[:to] ? params[:to] : Date.today.strftime("%m/%d/%Y"), "data-provide":"datepicker", onChange: "this.form.submit()" %>
       <% end %>
-      <% if params[:organization] && params[:board] && params[:from] && params[:to] %>
-        <%= button_to "Generuj plik CSV", generate_csv_path(organization: params[:organization], board: params[:board], from: params[:from], to: params[:to]), method: :post %>
-      <% end %>
+        <% if params[:organization] && params[:board] && params[:from] && params[:to] %>
+          <% if params[:from] <= params[:to] %>
+            <%= button_to "Generuj plik CSV", csv_path(organization: params[:organization], board: params[:board], from: params[:from], to: params[:to], format: "csv"), class: "btn btn-success" %>
+          <% else %>
+            <% flash[:warning] = "Data początkowa nie może być większa od końcowej, spróbuj jeszcze raz" %>
+          <% end %>
+        <% else %>
+          <% flash[:warning] = "Pola muszą być wypełnione poprawnie" %>
+        <% end %>
+
       <p> Poniżej linki do Trello, Wikipedii(o pliku CSV) i eEngine </p>
     <div style="display:flex">
       <div style="width:50%;">

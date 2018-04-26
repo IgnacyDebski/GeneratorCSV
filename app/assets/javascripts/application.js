@@ -16,8 +16,12 @@
 //= require bootstrap-datepicker
 //= require_tree .
 
-$(window).on("load", function(){
-  $(".button").on("click", function(){
-    alert("Wygenerowano CSV!");
-  });
+//$(document).ready(function(){
+  //$('#formularztagform').on('ajax:complete', function(event, data, status){
+    //$('#formularz').html(data.responseText)
+  //})
+//})
+
+$(document).ready(function(){
+  $.ajax()
 });
