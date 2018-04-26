@@ -15,13 +15,3 @@
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
 //= require_tree .
-
-//$(document).ready(function(){
-  //$('#formularztagform').on('ajax:complete', function(event, data, status){
-    //$('#formularz').html(data.responseText)
-  //})
-//})
-
-$(document).ready(function(){
-  $.ajax()
-});

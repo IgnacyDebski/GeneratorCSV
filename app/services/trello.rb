@@ -1,7 +1,7 @@
 class Trello
 
   def self.connect
-    OAuth::Consumer.new("5d33b173873b7411d2cf824a2c3d1e78", "ef50c3c3ff50429d726a9e3c2266dcdb39713e3ad2c29fab2d82a5d2cf3fb1e8",
+    OAuth::Consumer.new(ENV["API_TRELLO_TOKEN"], ENV["API_TRELLO_SECRET"],
     {
       :site => "https://api.trello.com/1",
       :scheme => :header,

@@ -13,7 +13,7 @@
         <%= text_field_tag 'from', params[:from] ? params[:from] : Date.today.strftime("%m/%d/%Y"), "data-provide":"datepicker", onChange: "this.form.submit()" %>
         <%= text_field_tag 'to', params[:to] ? params[:to] : Date.today.strftime("%m/%d/%Y"), "data-provide":"datepicker", onChange: "this.form.submit()" %>
       <% end %>
-        <% if params[:organization] && params[:board] && params[:from] && params[:to] %>
+        <% if params[:organization].present? && params[:board].present? && params[:from].present? && params[:to].present? %>
           <% if params[:from] <= params[:to] %>
             <%= button_to "Generuj plik CSV", csv_path(organization: params[:organization], board: params[:board], from: params[:from], to: params[:to], format: "csv"), class: "btn btn-success" %>
           <% else %>

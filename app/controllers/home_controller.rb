@@ -33,15 +33,4 @@ class HomeController < ApplicationController
     end
   end
 
-
-  # def generate_csv
-  #   authorize = Trello.authorize(current_user.trello_access_token, current_user.trello_secret_token)
-  #   logger.info params[:board]
-  #   logger.info @cards
-  #   # xx = @cards.first["id"][0..7].to_i(16)
-  #   # logger.info Time.at(xx).to_datetime.strftime("%Y-%m-%d")
-  # end
-    #dateLastActivity - nazwa zmiennej z datą ost modyfikacji tablicy podobnie użyć jak w csv_fields.html.erb pomocny json formatter
-    #date data ostatniej modyfikacji.
-    #flash.now[:success] = "Udało się wygenerować plik csv !"
 end
