@@ -1,7 +1,7 @@
 class TrelloAuthorizesController < ApplicationController
 
   def index
-    redirect_to Trello.set_callback.authorize_url(name: 'CSV_Maker', scope: 'read,account', expiration: 'never')
+    redirect_to Trello.connect.get_request_token(oauth_callback: callback_trello_authorizes_url).authorize_url(name: 'CSV_Maker', scope: 'read,account', expiration: 'never')
   end
 
   def callback
@@ -9,10 +9,10 @@ class TrelloAuthorizesController < ApplicationController
        redirect_to root_path
       return
      end
-    connect = Trello.set_callback
-    access_token  = connect.get_access_token(expires: :never, oauth_verifier: params[:oauth_verifier])
-    result = JSON.parse(access_token.get('/members/me').body)
-    user = User.find_by(trello_id: result["id"])
+    connect = Trello.connect.get_request_token(oauth_callback: callback_trello_authorizes_url)
+    @access_token  = connect.get_access_token(expires: :never, oauth_verifier: params[:oauth_verifier])
+    @result = JSON.parse(@access_token.get('/members/me').body)
+    user = User.find_by(trello_id: @result["id"])
     if user
       session[:user_id] = user.id
       redirect_to csv_path

@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
   get 'csv', to: 'home#csv_fields'
   post 'csv', to: 'home#csv_fields'
-  get 'generate_csv', to: 'home#generate_csv'
 
   resources :trello_authorizes do
     collection do
