@@ -1,4 +1,9 @@
-<div>
+<div id = "primary">
+
+  <section class="jumbotron">
+    <h1 class="text-center main-head"> Witaj w CSV_Maker! <h1>
+  </section>
+
   <% if @csv.errors.any? %>
     <div class="alert alert-danger">
     <% @csv.errors.each do |error| %>
@@ -11,23 +16,41 @@
     </div>
   <% end %>
 
-  <h1 align="center"> Witaj w CSV_Maker! <h1>
-  <h1 align="center"> Dane do CSV <h1>
 
-  <div align= "center" >
+  <div align= "center", id = "form" >
+  <h1 class="text-center"> Dane do CSV </h1>
+
     <%= form_tag(csv_path, remote: true, method: :get) do %>
-      <p>Wybierz organizację</p>
-      <%= select_tag "organization", options_for_select(@organizations.collect{ |elem| [elem["displayName"], elem["id"]] },
-                      params[:organization]), prompt: "Proszę wybrać", onChange: "this.form.submit()"%>
-      <p>Wybierz tablicę</p>
-      <%= select_tag "board", options_for_select(@boards.collect{ |board| [board["name"], board["id"]] }, params[:board]), prompt: "Proszę wybrać", onChange: "this.form.submit()" %>
-      <p>Wybierz zakres dat (od ... do ...)</p>
-      <%= text_field_tag 'from', params[:from] ? params[:from] : Date.today.strftime("%m/%d/%Y"), "data-provide":"datepicker", onChange: "this.form.submit()" %>
-      <%= text_field_tag 'to', params[:to] ? params[:to] : Date.today.strftime("%m/%d/%Y"), "data-provide":"datepicker", onChange: "this.form.submit()" %>
+
+      <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-push-3">
+
+          <p>Wybierz organizację</p>
+          <%= select_tag "organization", options_for_select(@organizations.collect{ |elem| [elem["displayName"], elem["id"]] },
+                          params[:organization]), prompt: "Proszę wybrać", onChange: "this.form.submit()", class: 'form-control'%>
+          <p>Wybierz tablicę</p>
+          <%= select_tag "board", options_for_select(@boards.collect{ |board| [board["name"], board["id"]] }, params[:board]), prompt: "Proszę wybrać", onChange: "this.form.submit()", class: 'form-control' %>
+          <p>Wybierz zakres dat (od ... do ...)</p>
+
+          <div class="col-md-6">
+            <label for="from">Data od:</label>
+            <%= text_field_tag 'from', params[:from] ? params[:from] : Date.today.strftime("%m/%d/%Y"), "data-provide":"datepicker", onChange: "this.form.submit()", class: 'form-control' %>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="todate">Data do:</label>
+            <%= text_field_tag 'to', params[:to] ? params[:to] : Date.today.strftime("%m/%d/%Y"), "data-provide":"datepicker", onChange: "this.form.submit()", class: 'form-control' %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
     <% end %>
     <%= button_to "Generuj plik CSV", csv_path(organization: params[:organization], board: params[:board], from: params[:from], to: params[:to], format: "csv"), class: "btn btn-success" %>
     <p> Poniżej linki do Trello, Wikipedii(o pliku CSV) i eEngine </p>
-  <div style="display:flex">
+  <div style="display:flex", id = "graphic">
     <div style="width:50%;">
       <%= link_to "https://trello.com", target: :blank do %>
         <%= image_tag("Trello.png", style:"width: 100%") %>
