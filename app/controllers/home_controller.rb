@@ -11,7 +11,7 @@ class HomeController < ApplicationController
     if params[:organization].present?
       @boards = JSON.parse(authorize.get("/organizations/#{params[:organization]}/boards").body)
       if params[:board].present?
-        @cards = JSON.parse(authorize.get("/boards/#{params[:board]}/cards?fields=name,shortUrl,dateLastActivity,id").body)
+        @cards = JSON.parse(authorize.get("/boards/#{params[:board]}/cards?fields=name,shortUrl,dateLastActivity,id&filter=all").body)
         filtered_cards = filter_by_days(@cards, params[:from], params[:to])
       else
         @cards = []
