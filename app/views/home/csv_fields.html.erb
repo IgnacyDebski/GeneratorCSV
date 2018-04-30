@@ -1,0 +1,49 @@
+<div>
+  <% if @csv.errors.any? %>
+    <div class="alert alert-danger">
+    <% @csv.errors.each do |error| %>
+      <ul>
+        <li>
+          <%= error %>
+        </li>
+      </ul>
+    <% end %>
+    </div>
+  <% end %>
+
+  <h1 align="center"> Witaj w CSV_Maker! <h1>
+  <h1 align="center"> Dane do CSV <h1>
+
+  <div align= "center" >
+    <%= form_tag(csv_path, remote: true, method: :get) do %>
+      <p>Wybierz organizację</p>
+      <%= select_tag "organization", options_for_select(@organizations.collect{ |elem| [elem["displayName"], elem["id"]] },
+                      params[:organization]), prompt: "Proszę wybrać", onChange: "this.form.submit()"%>
+      <p>Wybierz tablicę</p>
+      <%= select_tag "board", options_for_select(@boards.collect{ |board| [board["name"], board["id"]] }, params[:board]), prompt: "Proszę wybrać", onChange: "this.form.submit()" %>
+      <p>Wybierz zakres dat (od ... do ...)</p>
+      <%= text_field_tag 'from', params[:from] ? params[:from] : Date.today.strftime("%m/%d/%Y"), "data-provide":"datepicker", onChange: "this.form.submit()" %>
+      <%= text_field_tag 'to', params[:to] ? params[:to] : Date.today.strftime("%m/%d/%Y"), "data-provide":"datepicker", onChange: "this.form.submit()" %>
+    <% end %>
+    <%= button_to "Generuj plik CSV", csv_path(organization: params[:organization], board: params[:board], from: params[:from], to: params[:to], format: "csv"), class: "btn btn-success" %>
+    <p> Poniżej linki do Trello, Wikipedii(o pliku CSV) i eEngine </p>
+  <div style="display:flex">
+    <div style="width:50%;">
+      <%= link_to "https://trello.com", target: :blank do %>
+        <%= image_tag("Trello.png", style:"width: 100%") %>
+      <% end %>
+   </div>
+   <div style="width:50%">
+     <%= link_to "https://pl.wikipedia.org/wiki/CSV_(format_pliku)", target: :blank do %>
+     <%= image_tag("csv.png", style:"width: 100%") %>
+     <% end %>
+   </div>
+  </div>
+  <div>
+    <%= link_to "https://eengine.pl/pl", target: :blank do %>
+    <%= image_tag("pobrane.png", style:"width: 10%") %>
+    <% end %>
+  </div>
+  </div>
+</div>
+<footer> Wykonał Ignacy Dębski, praktykant eEngine sp. z.o.o Kwiecień/Maj 2018r. przy pomocy m.in. Rafała pseudonim "Gorzki" </footer>
