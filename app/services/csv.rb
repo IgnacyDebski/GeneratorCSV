@@ -1,5 +1,4 @@
 class Csv
-  include ActionView::Helpers::UrlHelper
   attr_accessor :from, :to, :organization, :board, :errors
 
   def initialize(from = nil, to = nil, organization = nil, board = nil)

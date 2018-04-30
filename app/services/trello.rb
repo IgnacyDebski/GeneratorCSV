@@ -13,8 +13,8 @@ class Trello
     })
   end
 
-  def self.set_callback
-    Trello.connect.get_request_token(oauth_callback: ENV["APP_DOMAIN"] + "/trello_authorizes/callback")
+  def self.set_callback(callback)
+    Trello.connect.get_request_token(oauth_callback: callback)
   end
 
   def self.authorize(access_token, secret_token)
