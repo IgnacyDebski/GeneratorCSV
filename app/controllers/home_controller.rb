@@ -15,6 +15,7 @@ class HomeController < ApplicationController
         filtered_cards = filter_by_days(@cards, params[:from], params[:to])
       else
         @cards = []
+        filtered_cards = []
       end
     else
       @boards = []
@@ -42,5 +43,5 @@ class HomeController < ApplicationController
     end
     filtered_cards
   end
-  
+
 end
